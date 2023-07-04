@@ -9,7 +9,7 @@ function App() {
 
 async function fetchData() {
   const response = await fetch(
-    "https://api.carbonintensity.org.uk/regional/postcode/B30?auth-token=X9N1x3zDUYCdCEMCy6OKgE58nS3P3IBs"
+    `https://api.carbonintensity.org.uk/regional/postcode/${user}?auth-token=X9N1x3zDUYCdCEMCy6OKgE58nS3P3IBs`
   );
   let data = await response.json();
 
@@ -27,10 +27,14 @@ const info = carbon?.data?.[0]?.data?.[0]?.generationmix.map((index) => {
       <>
           <h3>{index.fuel}</h3>
           <p>{index.perc}</p>
-          <p>Test</p>
+        
       </>
   );
 });
+
+async function handleSearch(event) {
+  setUser(event)
+}
 
 
 
@@ -39,7 +43,11 @@ const info = carbon?.data?.[0]?.data?.[0]?.generationmix.map((index) => {
       <h1 className="text-center text-3xl">MyIntensity </h1>
    {/* <div>{testResponse}</div> */}
    {info}
-     <button onClick={()=>{fetchData()}}>Fetch B30</button>
+     <button onClick={()=>{fetchData()}}>Fetch</button>
+
+<input 
+placeholder="Search"
+onChange={(event)=>handleSearch(event.target.value)}></input>
      <button onClick={()=>{console.log(carbon)}}>Console Log</button>
      <div>
 
