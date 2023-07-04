@@ -4,9 +4,10 @@ import React, {useState} from "react";
 
 function App() {
 
-  const [testResponse, setTestResponse] = useState('test')
+  const [carbon, setCarbon] = useState('test')
+  const [user, setUser ] = useState("")
 
-async function fetchStuff() {
+async function fetchData() {
   const response = await fetch(
     "https://api.carbonintensity.org.uk/regional/postcode/B30?auth-token=X9N1x3zDUYCdCEMCy6OKgE58nS3P3IBs"
   );
@@ -14,12 +15,22 @@ async function fetchStuff() {
 
 
 if(data === undefined) {
-  setTestResponse("Null")
+  setCarbon("Null")
  
 } else {
-  setTestResponse(data)
+  setCarbon(data)
 }
 }
+
+const info = carbon?.data?.[0]?.data?.[0]?.generationmix.map((index) => {
+  return (
+      <>
+          <h3>{index.fuel}</h3>
+          <p>{index.perc}</p>
+          <p>Test</p>
+      </>
+  );
+});
 
 
 
@@ -27,9 +38,13 @@ if(data === undefined) {
     <div>
       <h1 className="text-center text-3xl">MyIntensity </h1>
    {/* <div>{testResponse}</div> */}
-     <button onClick={()=>{fetchStuff()}}>Fetch B30</button>
-     <button onClick={()=>{console.log(testResponse)}}>Console Log</button>
-     <div></div>
+   {info}
+     <button onClick={()=>{fetchData()}}>Fetch B30</button>
+     <button onClick={()=>{console.log(carbon)}}>Console Log</button>
+     <div>
+
+
+     </div>
     </div>
   );
 }
