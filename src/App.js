@@ -11,17 +11,25 @@ async function fetchStuff() {
     "https://api.carbonintensity.org.uk/regional/postcode/B30?auth-token=X9N1x3zDUYCdCEMCy6OKgE58nS3P3IBs"
   );
   let data = await response.json();
- setTestResponse(data)
- console.log(testResponse)
+
+
+if(data === undefined) {
+  setTestResponse("Null")
+ 
+} else {
+  setTestResponse(data)
+}
 }
 
 
 
   return (
     <div>
-      <h1 className="text-center text-3xl">MyIntensity OIOKOKOK</h1>
-   
-     <button onClick={()=>{fetchStuff()}}>HELP ME</button>
+      <h1 className="text-center text-3xl">MyIntensity </h1>
+   {/* <div>{testResponse}</div> */}
+     <button onClick={()=>{fetchStuff()}}>Fetch B30</button>
+     <button onClick={()=>{console.log(testResponse)}}>Console Log</button>
+     <div></div>
     </div>
   );
 }
