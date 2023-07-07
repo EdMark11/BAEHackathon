@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 
-
-
 function App() {
 
   const [carbon, setCarbon] = useState('test')
@@ -35,9 +33,6 @@ const info = carbon?.data?.[0]?.data?.[0]?.generationmix.map((index) => {
 async function handleSearch(event) {
   setUser(event)
 }
-
-
-
   return (
     <div>
       <h1 className="text-center text-3xl">MyIntensity </h1>
